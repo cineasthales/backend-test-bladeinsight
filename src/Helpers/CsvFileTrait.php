@@ -9,6 +9,10 @@ trait CsvFileTrait
         $lines = [];
 
         $file = fopen($filePath . '.csv', 'r');
+        if (!$file) {
+            http_response_code(404);
+            exit();
+        }
 
         while (($data = fgetcsv($file)) !== false) {
             $lines[] = $data;
@@ -35,6 +39,10 @@ trait CsvFileTrait
         $line = [];
 
         $file = fopen($filePath . '.csv', 'r');
+        if (!$file) {
+            http_response_code(404);
+            exit();
+        }
 
         while (($data = fgetcsv($file)) !== false) {
             if ($data[0] === $id) {
@@ -51,6 +59,11 @@ trait CsvFileTrait
     public function replaceLine(string $filePath, string $id, array $newData) : bool
     {
         $file = fopen($filePath . '.csv', 'r');
+        if (!$file) {
+            http_response_code(404);
+            exit();
+        }
+
         $fileTemp = fopen($filePath . '_temp.csv', 'w');
 
         array_unshift($newData, $id);
@@ -77,6 +90,11 @@ trait CsvFileTrait
     public function deleteLine(string $filePath, string $id) : bool
     {
         $file = fopen($filePath . '.csv', 'r');
+        if (!$file) {
+            http_response_code(404);
+            exit();
+        }
+
         $fileTemp = fopen($filePath . '_temp.csv', 'w');
 
         $foundLine = false;
