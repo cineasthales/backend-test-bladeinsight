@@ -18,6 +18,11 @@ class AddressController implements CrudableInterface
 
     public function store(array $newData) : bool
     {
+        if (!array_key_exists('address', $newData) || count($newData['address']) !== 4) {
+            http_response_code(400);
+            return false;
+        }
+
         return $this->writeLine($this->filePath, $newData['address']);
     }
 
@@ -28,6 +33,11 @@ class AddressController implements CrudableInterface
 
     public function update(string $id, array $newData) : bool
     {
+        if (!array_key_exists('address', $newData) || count($newData['address']) !== 3) {
+            http_response_code(400);
+            return false;
+        }
+
         return $this->replaceLine($this->filePath, $id, $newData['address']);
     }
 
