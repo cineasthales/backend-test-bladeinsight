@@ -15,10 +15,10 @@ if ((!in_array($method, $allowed_methods) ||
 }
 
 $config_path = __DIR__ . '/src/Config/';
-require_once $config_path . 'autoload.php';
+require_once $config_path . 'Autoload.php';
 
 $resource = $_SERVER['PATH_INFO'];
-$routes = require_once $config_path . 'routes.php';
+$routes = require_once $config_path . 'Routes.php';
 
 if (!array_key_exists($resource, $routes)) {
     notFound();
