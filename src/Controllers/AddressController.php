@@ -2,9 +2,10 @@
 
 namespace Turbines\Controllers;
 
+use Turbines\Controllers\CrudableInterface;
 use Turbines\Helpers\CsvFileTrait;
 
-class AddressController
+class AddressController implements CrudableInterface
 {
     use CsvFileTrait;
 
